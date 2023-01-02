@@ -19,7 +19,9 @@ module.exports = (req, res) => {
     // 代理响应后触发
     onProxyRes: function (proxyRes, req, res) {
       // 修改响应头
-      proxyRes.headers['Access-Control-Allow-Origin'] = '*' // 允许跨域
+      res.setHeader('Access-Control-Allow-Origin', '*')
+      res.setHeader('Access-Control-Allow-Headers', '*')
+      res.setHeader('Access-Control-Allow-Methods', '*')
     }
   })(req, res)
 }

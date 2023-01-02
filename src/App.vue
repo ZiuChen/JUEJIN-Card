@@ -9,7 +9,7 @@
   <div class="card-wrapper">
     <div class="card" @click="handleCardClick">
       <Spin v-show="loadingStatus" tip="我知道你很急，但你先别急" />
-      <img src="./assets/juejin-full.svg" alt="juejin-full" v-show="face" />
+      <img src="/juejin-full.svg" alt="juejin-full" v-show="face" />
       <div class="header" v-show="!loadingStatus && !face">
         <img class="avatar" :src="userInfo.avatar_large" alt="avatar" />
         <div>
@@ -18,18 +18,18 @@
             {{ userInfo.job_title }}
           </div>
         </div>
-        <img class="juejin-icon" src="./assets/juejin-icon.svg" alt="juejin-icon" />
+        <img class="juejin-icon" src="/juejin-icon.svg" alt="juejin-icon" />
       </div>
       <div class="body" v-show="!loadingStatus && !face">
         {{ userInfo.description }}
       </div>
       <div class="footer" v-show="!loadingStatus && !face">
         <div class="footer-item">
-          <img src="./assets/account-outline.svg" alt="follow" />
+          <img src="/account-outline.svg" alt="follow" />
           <span>{{ userInfo.follower_count }}</span>
         </div>
         <div class="footer-item">
-          <img src="./assets/thumb-up-outline.svg" alt="like" />
+          <img src="/thumb-up-outline.svg" alt="like" />
           <span>{{ userInfo.got_digg_count }}</span>
         </div>
         <div class="user-id">{{ userInfo.user_id }}</div>

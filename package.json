@@ -5,7 +5,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "dom2pic": "^1.0.9",
+    "html2canvas": "^1.4.1",
     "vue": "^3.2.45"
   },
   "devDependencies": {

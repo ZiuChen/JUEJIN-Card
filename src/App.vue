@@ -47,6 +47,11 @@
         {{ face ? '🔒' : '🔓' }}
       </div>
     </Tooltip>
+    <Tooltip content="保存为图片" position="bottom">
+      <div class="button" @click="saveToImage">
+        {{ '⛺' }}
+      </div>
+    </Tooltip>
     <Tooltip content="重置" position="bottom">
       <div class="button" @click="resetUserInfo">
         {{ '😎' }}
@@ -59,6 +64,7 @@
 import { ref, watch, onMounted } from 'vue'
 import fetchUserInfo from './hooks/fetchUserInfo'
 import { Message, Spin, Tooltip } from '@arco-design/web-vue'
+import html2canvas from 'html2canvas'
 
 const defaultUserInfo = {
   user_name: 'Ziu',
@@ -94,7 +100,6 @@ watch(userLink, (val) => {
         loadingStatus.value = false
       })
       .catch((err) => {
-        console.log(err)
         Message.error({
           content: err,
           duration: 2500
@@ -154,6 +159,31 @@ const resetUserInfo = () => {
   userLink.value = ''
 }
 
+const saveToImage = () => {
+  const card = document.querySelector('.card')
+  html2canvas(card, {
+    backgroundColor: null,
+    useCORS: true
+  })
+    .then((canvas) => {
+      const link = document.createElement('a')
+      link.download = '掘金名片.png'
+      link.href = canvas.toDataURL('image/png')
+      link.click()
+    })
+    .then(() => {
+      Message.success({
+        content: '保存成功',
+        duration: 2500
+      })
+    })
+    .catch((err) => {
+      Message.error({
+        content: err,
+        duration: 2500
+      })
+    })
+}
 const handleCardClick = () => window.open('https://juejin.cn/user/' + userInfo.value.user_id)
 </script>
 
@@ -163,6 +193,7 @@ const handleCardClick = () => window.open('https://juejin.cn/user/' + userInfo.v
   width: 350px;
   outline: none;
   font-size: 1.1em;
+  text-align: center;
   border: var(--border-color) 1px solid;
   border-radius: 5px;
   padding: 5px;
@@ -260,6 +291,7 @@ const handleCardClick = () => window.open('https://juejin.cn/user/' + userInfo.v
       );
       background-clip: text; /*截取背景区域为文字*/
       -webkit-background-clip: text; /*截取背景区域为文字*/
+      -webkit-text-fill-color: transparent; /*文字颜色透明*/
       color: transparent;
       background-size: 300% 100%; /*扩大背景区域*/
     }

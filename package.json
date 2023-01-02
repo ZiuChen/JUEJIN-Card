@@ -1,0 +1,19 @@
+{
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "dom2pic": "^1.0.9",
+    "vue": "^3.2.45"
+  },
+  "devDependencies": {
+    "@arco-design/web-vue": "^2.41.0",
+    "@vitejs/plugin-vue": "^4.0.0",
+    "consola": "^2.15.3",
+    "less": "^4.1.3",
+    "vite": "^4.0.0",
+    "vite-plugin-style-import": "^2.0.0"
+  }
+}

@@ -9,7 +9,14 @@
   <div class="card-wrapper">
     <div class="card" @click="handleCardClick">
       <Spin v-show="loadingStatus" tip="我知道你很急，但你先别急" />
-      <img src="/juejin-full.svg" alt="juejin-full" v-show="face" />
+      <svg
+        class="icon"
+        aria-hidden="true"
+        :style="{ width: '150px', height: '50px' }"
+        v-show="face"
+      >
+        <use xlink:href="#icon-juejin-full"></use>
+      </svg>
       <div class="header" v-show="!loadingStatus && !face">
         <img class="avatar" :src="userInfo.avatar_large" alt="avatar" />
         <div>
@@ -18,18 +25,24 @@
             {{ userInfo.job_title }}
           </div>
         </div>
-        <img class="juejin-icon" src="/juejin-icon.svg" alt="juejin-icon" />
+        <svg class="icon juejin-icon" aria-hidden="true">
+          <use xlink:href="#icon-juejin"></use>
+        </svg>
       </div>
       <div class="body" v-show="!loadingStatus && !face">
         {{ userInfo.description }}
       </div>
       <div class="footer" v-show="!loadingStatus && !face">
         <div class="footer-item">
-          <img src="/account-outline.svg" alt="follow" />
+          <svg class="icon" aria-hidden="true" :style="{ fill: '#23c9ed' }">
+            <use xlink:href="#icon-account-outline"></use>
+          </svg>
           <span>{{ userInfo.follower_count }}</span>
         </div>
         <div class="footer-item">
-          <img src="/thumb-up-outline.svg" alt="like" />
+          <svg class="icon" aria-hidden="true" :style="{ fill: '#ff5d47' }">
+            <use xlink:href="#icon-thumb-up-outline"></use>
+          </svg>
           <span>{{ userInfo.got_digg_count }}</span>
         </div>
         <div class="user-id">{{ userInfo.user_id }}</div>
@@ -250,6 +263,7 @@ const handleCardClick = () => window.open('https://juejin.cn/user/' + userInfo.v
       position: absolute;
       right: 0px;
       height: 45px;
+      width: 45px;
     }
   }
   .body {
@@ -271,8 +285,9 @@ const handleCardClick = () => window.open('https://juejin.cn/user/' + userInfo.v
       justify-content: center;
       align-items: center;
       margin-right: 20px;
-      img {
+      svg {
         height: 20px;
+        width: 20px;
         margin-right: 5px;
       }
       span {
